@@ -7,7 +7,9 @@
       "@hooks/*": ["src/hooks/*"],
       "@routes/*": ["src/routes/*"],
       "@typings/*": ["src/typings/*"],
-      "@screens/*": ["src/screens/*"]
+      "@screens/*": ["src/screens/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"]
     }
   }
 }
