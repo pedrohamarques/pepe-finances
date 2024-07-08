@@ -1,7 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
 import { useCustomFonts } from "@hooks/useCustomFonts";
+
+import PublicRoutes from "@routes/public-routes";
 
 export default function App() {
   const { error, loaded } = useCustomFonts();
@@ -11,8 +13,8 @@ export default function App() {
   }
 
   return (
-    <View className="flex-1 justify-center items-center">
-      <Text className="">Hello World</Text>
-    </View>
+    <NavigationContainer>
+      <PublicRoutes />
+    </NavigationContainer>
   );
 }
