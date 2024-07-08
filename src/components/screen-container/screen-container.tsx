@@ -1,26 +1,34 @@
 import React from "react";
 import { StatusBar, StatusBarStyle } from "expo-status-bar";
-import { View } from "react-native";
+import { ScrollView, ScrollViewProps } from "react-native";
 
-type ScreenContainerProps = React.PropsWithChildren & {
-  testID?: string;
-  customStyle?: string;
-  style?: StatusBarStyle;
-};
+type ScreenContainerProps = React.PropsWithChildren &
+  ScrollViewProps & {
+    testID?: string;
+    customStyle?: string;
+    style?: StatusBarStyle;
+  };
 
 export function ScreenContainer({
   testID = "components.screen-container",
   customStyle = "",
   style = "light",
   children,
+  ...rest
 }: ScreenContainerProps) {
   return (
-    <View
-      className={`flex-1 justify-center items-center bg-emerald-600 ${customStyle}`}
+    <ScrollView
+      className={` bg-emerald-600 ${customStyle}`}
+      contentContainerStyle={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      {...rest}
       testID={testID}
     >
       <StatusBar style={style} />
       {children}
-    </View>
+    </ScrollView>
   );
 }
