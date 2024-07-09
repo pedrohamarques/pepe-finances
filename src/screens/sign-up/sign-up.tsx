@@ -14,6 +14,7 @@ import { CustomInput } from "@components/input-custom";
 import { CustomButton } from "@components/button-custom";
 
 import { useSignUpScreen } from "./sign-up.hook";
+import { MessageValidation } from "@components/validation-message";
 
 export function SignUpScreen() {
   const {
@@ -92,6 +93,14 @@ export function SignUpScreen() {
                 />
               </TouchableOpacity>
             </CustomInput>
+
+            {submitState.errors.map((error) => (
+              <MessageValidation
+                key={error.path[0]}
+                text={error.message}
+                type="error"
+              />
+            ))}
 
             <View className="space-y-4 mt-10">
               <CustomButton

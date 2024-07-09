@@ -6,7 +6,11 @@ export const registerSchema = z
     password: z
       .string()
       .min(8, { message: "Password must have at least 8 characters" }),
-    confirmPassword: z.string().min(8),
+    confirmPassword: z
+      .string()
+      .min(8, {
+        message: "Confirmation password must have at least 8 characters",
+      }),
   })
   .superRefine(({ confirmPassword, password }, context) => {
     if (confirmPassword !== password) {
