@@ -6,7 +6,7 @@ import { AuthProvider } from "@contexts/auth-context";
 
 import { useCustomFonts } from "@hooks/useCustomFonts";
 
-import PublicRoutes from "@routes/public-routes";
+import NavigationRoutes from "@routes/navigation";
 
 export default function App() {
   const { error, loaded } = useCustomFonts();
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <PublicRoutes />
+        <NavigationRoutes />
         <Toast />
       </AuthProvider>
     </NavigationContainer>
