@@ -1,7 +1,7 @@
 import { useReducer, useState } from "react";
-import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import Toast from "react-native-toast-message";
 
 import { supabase } from "@services/supabase";
 
@@ -52,8 +52,6 @@ export function useSignUpScreen() {
     navigation.navigate(PUBLIC_ROUTES.SIGN_IN);
   }
 
-  console.log(submitState.errors);
-
   async function handleRegister() {
     dispatch({ type: ACTION_KIND.SUBMIT });
 
@@ -72,10 +70,18 @@ export function useSignUpScreen() {
       password: submitState.password,
     });
 
-    if (error) Alert.alert(error.message);
-    if (!data.session) Alert.alert("Please check your e-mail");
-    console.log(data, "account created");
+    if (error)
+      Toast.show({ type: "error", text1: "Error", text2: error.message });
 
+    if (!data.session)
+      Toast.show({
+        type: "success",
+        text1: "Account created!",
+        text2: "Please, confirm your e-mail before sign-in",
+        onPress: handleSignInPress,
+      });
+
+    handleSignInPress();
     dispatch({ type: ACTION_KIND.RESET });
   }
 
