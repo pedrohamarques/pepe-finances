@@ -11,13 +11,21 @@ import { Feather } from "@expo/vector-icons";
 import { ScreenContainer } from "@components/screen-container";
 import { Logo } from "@components/logo";
 import { CustomInput } from "@components/input-custom";
-
-import { useSignInScreen } from "./sign-in.hook";
+import { MessageValidation } from "@components/validation-message";
 import { CustomButton } from "@components/button-custom";
 
+import { useSignInScreen } from "./sign-in.hook";
+
 export function SignInScreen() {
-  const { isPasswordVisible, handleSignUpPress, handlePasswordVisibility } =
-    useSignInScreen();
+  const {
+    isPasswordVisible,
+    loginState,
+    handleEmailFill,
+    handlePasswordFill,
+    handleSignUpPress,
+    handlePasswordVisibility,
+    handleLogin,
+  } = useSignInScreen();
 
   return (
     <ScreenContainer testID="screens.sign-in.screen-container">
@@ -35,15 +43,20 @@ export function SignInScreen() {
               placeholder="E-mail"
               icon="user"
               autoCorrect={false}
+              autoCapitalize="none"
               keyboardType="email-address"
               containerStyle="mb-4"
               testID="screens.sign-in.custom-input.email"
+              value={loginState.email}
+              onChangeText={handleEmailFill}
             />
             <CustomInput
               placeholder="Password"
               icon="lock"
-              secureTextEntry={isPasswordVisible && true}
+              secureTextEntry={!isPasswordVisible}
               containerStyle="mb-4"
+              value={loginState.password}
+              onChangeText={handlePasswordFill}
               testID="screens.sign-in.custom-input.password"
             >
               <TouchableOpacity
@@ -58,9 +71,20 @@ export function SignInScreen() {
               </TouchableOpacity>
             </CustomInput>
 
+            {loginState.errors.map((error, index) => (
+              <MessageValidation
+                key={error.path[0]}
+                text={error.message}
+                type="error"
+                testID={`screens.sign-in.message-validation-${index}`}
+              />
+            ))}
+
             <View className="space-y-4 mt-10">
               <CustomButton
+                isLoading={loginState.isLoading}
                 text="Login"
+                onPress={handleLogin}
                 testID="screens.sign-in.custom-button.login"
               />
 
