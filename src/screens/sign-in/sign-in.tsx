@@ -44,7 +44,7 @@ export function SignInScreen() {
               icon="lock"
               secureTextEntry={isPasswordVisible && true}
               containerStyle="mb-4"
-              testID="screens.sign-in.custom-input.email"
+              testID="screens.sign-in.custom-input.password"
             >
               <TouchableOpacity
                 className="justify-center items-center"
