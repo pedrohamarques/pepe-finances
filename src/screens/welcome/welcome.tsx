@@ -16,7 +16,7 @@ export function WelcomeScreen() {
         <Logo testID="screens.welcome.logo" />
       </View>
 
-      <View className="flex-1 justify-end mb-10 space-y-6 w-full px-8">
+      <View className="flex-1 justify-end mb-20 space-y-6 w-full px-8">
         <CustomButton
           text="Sign In"
           onPress={handleSignInPress}
