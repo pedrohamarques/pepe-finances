@@ -16,11 +16,8 @@ import { useSignInScreen } from "./sign-in.hook";
 import { CustomButton } from "@components/button-custom";
 
 export function SignInScreen() {
-  const {
-    isPasswordVisible,
-
-    handlePasswordVisibility,
-  } = useSignInScreen();
+  const { isPasswordVisible, handleSignUpPress, handlePasswordVisibility } =
+    useSignInScreen();
 
   return (
     <ScreenContainer testID="screens.sign-in.screen-container">
@@ -61,22 +58,22 @@ export function SignInScreen() {
               </TouchableOpacity>
             </CustomInput>
 
-            <View className="space-y-4">
-              <View className=" flex-row justify-center items-center mt-6">
+            <View className="space-y-4 mt-10">
+              <CustomButton
+                text="Login"
+                testID="screens.sign-in.custom-button.login"
+              />
+
+              <View className=" flex-row justify-center items-center mt-4">
                 <Text className="font-inter-medium tracking-wider text-lg text-white">
                   Don&apos;t have an account?{" "}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleSignUpPress}>
                   <Text className="font-inter-semi-bold underline tracking-wider text-lg text-white">
                     Sign Up!
                   </Text>
                 </TouchableOpacity>
               </View>
-
-              <CustomButton
-                text="Login"
-                testID="screens.sign-in.custom-button.login"
-              />
             </View>
           </View>
         </View>
