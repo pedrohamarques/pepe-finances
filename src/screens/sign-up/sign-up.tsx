@@ -94,11 +94,12 @@ export function SignUpScreen() {
               </TouchableOpacity>
             </CustomInput>
 
-            {submitState.errors.map((error) => (
+            {submitState.errors.map((error, index) => (
               <MessageValidation
                 key={error.path[0]}
                 text={error.message}
                 type="error"
+                testID={`screens.sign-up.message-validation-${index}`}
               />
             ))}
 
