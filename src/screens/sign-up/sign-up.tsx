@@ -20,8 +20,13 @@ export function SignUpScreen() {
     handleConfirmPasswordVisibility,
     handlePasswordVisibility,
     handleSignInPress,
+    handlePasswordFill,
+    handleConfirmPasswordFill,
+    handleEmailFill,
+    handleRegister,
     isPasswordVisible,
     isConfirmPasswordVisible,
+    submitState,
   } = useSignUpScreen();
 
   return (
@@ -40,16 +45,21 @@ export function SignUpScreen() {
               placeholder="E-mail"
               icon="user"
               autoCorrect={false}
+              autoCapitalize="none"
               keyboardType="email-address"
               containerStyle="mb-4"
               testID="screens.sign-up.custom-input.email"
+              value={submitState.email}
+              onChangeText={handleEmailFill}
             />
             <CustomInput
               placeholder="Password"
               icon="lock"
-              secureTextEntry={isPasswordVisible && true}
+              secureTextEntry={!isPasswordVisible}
               containerStyle="mb-4"
               testID="screens.sign-up.custom-input.password"
+              value={submitState.password}
+              onChangeText={handlePasswordFill}
             >
               <TouchableOpacity
                 className="justify-center items-center"
@@ -65,8 +75,10 @@ export function SignUpScreen() {
             <CustomInput
               placeholder="Confirm password"
               icon="lock"
-              secureTextEntry={isConfirmPasswordVisible && true}
+              secureTextEntry={!isConfirmPasswordVisible}
               containerStyle="mb-4"
+              value={submitState.confirmPassword}
+              onChangeText={handleConfirmPasswordFill}
               testID="screens.sign-up.custom-input.confirm-password"
             >
               <TouchableOpacity
@@ -83,8 +95,10 @@ export function SignUpScreen() {
 
             <View className="space-y-4 mt-10">
               <CustomButton
+                onPress={handleRegister}
                 text="Register"
                 testID="screens.sign-up.custom-button.register"
+                isLoading={submitState.isLoading}
               />
 
               <View className=" flex-row justify-center items-center mt-4">
