@@ -11,7 +11,12 @@ export function useWelcomeScreen() {
     navigation.navigate(PUBLIC_ROUTES.SIGN_IN);
   }
 
+  function handleSignUpPress() {
+    navigation.navigate(PUBLIC_ROUTES.SIGN_UP);
+  }
+
   return {
     handleSignInPress,
+    handleSignUpPress,
   };
 }
