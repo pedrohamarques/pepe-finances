@@ -6,6 +6,7 @@ export enum PUBLIC_ROUTES {
 
 export enum PRIVATE_ROUTES {
   HOME = "HomeScreen",
+  ADD_EXPENSE = "AddExpense",
 }
 
 export type PublicRoutesParams = {
@@ -16,4 +17,5 @@ export type PublicRoutesParams = {
 
 export type PrivateRoutesParams = {
   [PRIVATE_ROUTES.HOME]: undefined;
+  [PRIVATE_ROUTES.ADD_EXPENSE]: undefined;
 };
