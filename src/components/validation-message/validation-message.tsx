@@ -17,7 +17,7 @@ export function MessageValidation({
   const message = getProps(type);
 
   return (
-    <View testID={testID} className="flex-row items-center space-x-2 py-1 ">
+    <View testID={testID} className="flex-row items-center space-x-2 ">
       <Feather name={message.icon} size={20} color={message.iconColor} />
       <Text className={`font-inter-medium tracking-wider ${message.textColor}`}>
         {text}
